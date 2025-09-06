@@ -13,7 +13,7 @@ export const Header = () => {
     <header className="fixed top-0 left-0 right-0 bg-neutral-700 h-[12vh] flex items-center justify-between px-4 md:px-12">
       <NavLink
         to={"/"}
-        className="text-zinc-200 text-2xl font-bold cursor-pointer"
+        className="text-zinc-200 text-2xl font-bold cursor-pointer tracking-wider"
       >
         Cartify
       </NavLink>

@@ -4,6 +4,7 @@ import { Error } from "./components/layout/Error";
 import { Home } from "./components/layout/Home";
 import { Cart } from "./components/layout/Cart";
 import { UserProvider } from "./Context/UserProvider";
+import { Store } from "./components/layout/Store";
 
 const router = createBrowserRouter([
   {
@@ -14,6 +15,10 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
+      },
+      {
+        path: "/store",
+        element: <Store />,
       },
       {
         path: "/cart",
