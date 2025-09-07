@@ -1,10 +1,12 @@
-import { useEffect, useState, type ReactNode } from "react";
+import { useEffect, useReducer, useState, type ReactNode } from "react";
 import { UserContext } from "./UserContext";
 import type { ProductType } from "@/lib/type";
+import { cartReducer } from "./Reducer";
 
 export const UserProvider = ({ children }: { children: ReactNode }) => {
   const [isDark, setIsDark] = useState(false);
   const [product, setProduct] = useState<ProductType[]>([]);
+  const [cartState, cartDispatch] = useReducer(cartReducer, []);
 
   useEffect(() => {
     async function fetchData() {
@@ -31,7 +33,15 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
     });
   };
 
-  const value = { isDark, setIsDark, handleToggle, product, setProduct };
+  const value = {
+    isDark,
+    setIsDark,
+    handleToggle,
+    product,
+    setProduct,
+    cartState,
+    cartDispatch,
+  };
 
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
 };

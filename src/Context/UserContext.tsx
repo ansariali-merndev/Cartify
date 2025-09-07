@@ -7,6 +7,8 @@ const defaultValue = {
   handleToggle: () => {},
   product: [] as ProductType[],
   setProduct: () => {},
+  cartState: [],
+  cartDispatch: () => {},
 };
 
 export const UserContext = createContext<ContextType>(defaultValue);
