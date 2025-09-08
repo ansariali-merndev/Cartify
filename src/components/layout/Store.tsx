@@ -9,14 +9,16 @@ import {
 } from "../ui/card";
 import { StarRating } from "../block/StarRating";
 import { AddToCartBtn } from "../block/AddToCartBtn";
+import { FilterFunctionality } from "../block/FilterFunctionality";
 
 export const Store = () => {
-  const { product } = useUser();
+  const { productState } = useUser();
 
   return (
     <section>
+      <FilterFunctionality />
       <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {product.map((item, idx) => (
+        {productState.map((item, idx) => (
           <li key={`${item.id}-index-${idx}`}>
             <Card>
               <CardHeader>

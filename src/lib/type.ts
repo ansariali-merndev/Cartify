@@ -10,6 +10,8 @@ export interface ContextType {
   cartDispatch: React.Dispatch<CartAction>;
   isLoaded: boolean;
   setIsLoaded: React.Dispatch<React.SetStateAction<boolean>>;
+  productState: ProductType[];
+  productDispatch: React.Dispatch<ProductAction>;
 }
 
 export interface ProductType {
@@ -37,4 +39,11 @@ export type CartAction =
   | { type: "ADD_TO_CART"; payload: CartType }
   | { type: "REMOVE_FROM_CART"; payload: number }
   | { type: "INCREASE_QUANTITY"; payload: number }
-  | { type: "DECREASE_QUANTITY"; payload: number }; 
+  | { type: "DECREASE_QUANTITY"; payload: number };
+
+export type ProductAction =
+  | { type: "SEARCH_FUNCTIONALITY"; payload: string; original: ProductType[] }
+  | { type: "LOW_TO_HIGH"; payload: ProductType[] }
+  | { type: "HIGH_TO_LOW"; payload: ProductType[] }
+  | { type: "BY_DEFAULT"; payload: ProductType[] };
+

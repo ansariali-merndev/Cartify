@@ -1,7 +1,7 @@
 import { useEffect, useReducer, useState, type ReactNode } from "react";
 import { UserContext } from "./UserContext";
 import type { CartType, ProductType } from "@/lib/type";
-import { cartReducer } from "./Reducer";
+import { cartReducer, productReducer } from "./Reducer";
 
 const getInitialValue = () => {
   const cartStr = localStorage.getItem("cart");
@@ -13,6 +13,7 @@ const getInitialValue = () => {
 export const UserProvider = ({ children }: { children: ReactNode }) => {
   const [isDark, setIsDark] = useState(false);
   const [product, setProduct] = useState<ProductType[]>([]);
+  const [productState, productDispatch] = useReducer(productReducer, product);
   const [isLoaded, setIsLoaded] = useState(false);
   const [cartState, cartDispatch] = useReducer(cartReducer, getInitialValue());
 
@@ -20,14 +21,17 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
     async function fetchData() {
       try {
         const res = await fetch("https://fakestoreapi.com/products");
-        setProduct(await res.json());
+        const data = await res.json();
+        setProduct(data);
+        productDispatch({ type: "BY_DEFAULT", payload: data });
       } catch (error) {
         console.log(error);
+      } finally {
+        setIsLoaded(true);
       }
     }
 
     fetchData();
-    setIsLoaded(true);
   }, []);
 
   const handleToggle = () => {
@@ -51,6 +55,9 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
     cartState,
     cartDispatch,
     isLoaded,
+    setIsLoaded,
+    productState,
+    productDispatch,
   };
 
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;

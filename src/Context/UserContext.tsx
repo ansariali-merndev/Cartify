@@ -11,6 +11,8 @@ const defaultValue = {
   cartDispatch: () => {},
   isLoaded: false,
   setIsLoaded: () => {},
+  productState: [],
+  productDispatch: () => {},
 };
 
 export const UserContext = createContext<ContextType>(defaultValue);
