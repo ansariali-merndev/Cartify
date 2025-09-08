@@ -5,6 +5,7 @@ import { Home } from "./components/layout/Home";
 import { Cart } from "./components/layout/Cart";
 import { UserProvider } from "./Context/UserProvider";
 import { Store } from "./components/layout/Store";
+import { Product } from "./components/layout/Product";
 
 const router = createBrowserRouter([
   {
@@ -19,6 +20,10 @@ const router = createBrowserRouter([
       {
         path: "/store",
         element: <Store />,
+      },
+      {
+        path: "/store/:id",
+        element: <Product />,
       },
       {
         path: "/cart",
