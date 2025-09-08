@@ -6,6 +6,7 @@ export function TypographyTable() {
   const [subtotal, setSubtotal] = useState(0);
 
   useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(cartState));
     const price: number = cartState.reduce(
       (acc, item) => acc + item.qty * item.price,
       0
@@ -22,7 +23,7 @@ export function TypographyTable() {
               Subtotal
             </th>
             <th className="border px-4 py-2 text-left font-bold [&[align=center]]:text-center [&[align=right]]:text-right">
-              ₹{subtotal}
+              ₹{subtotal.toFixed(2)}
             </th>
           </tr>
         </thead>
@@ -40,7 +41,7 @@ export function TypographyTable() {
               <span className="font-extrabold">Total</span>
             </td>
             <td className="border px-4 py-2 text-left [&[align=center]]:text-center [&[align=right]]:text-right">
-              ₹{cartState.length === 0 ? 0 : subtotal + 200}
+              ₹{cartState.length === 0 ? 0 : (subtotal + 200).toFixed(2)}
             </td>
           </tr>
         </tbody>

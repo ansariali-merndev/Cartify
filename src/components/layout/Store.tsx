@@ -8,32 +8,10 @@ import {
   CardTitle,
 } from "../ui/card";
 import { StarRating } from "../block/StarRating";
-import { Button } from "../ui/button";
-import Swal from "sweetalert2";
+import { AddToCartBtn } from "../block/AddToCartBtn";
 
 export const Store = () => {
-  const { product, cartDispatch } = useUser();
-
-  const handleAddToCart = (
-    id: number,
-    image: string,
-    title: string,
-    price: number
-  ) => {
-    cartDispatch({
-      type: "ADD_TO_CART",
-      payload: { id, qty: 1, image, title, price },
-    });
-    Swal.fire({
-      toast: true,
-      position: "bottom-right",
-      timerProgressBar: true,
-      showConfirmButton: false,
-      title: "Product Added to Cart",
-      icon: "success",
-      timer: 3000,
-    });
-  };
+  const { product } = useUser();
 
   return (
     <section>
@@ -55,14 +33,7 @@ export const Store = () => {
               </CardHeader>
               <CardContent className="flex items-center justify-between">
                 <p>₹{item.price}</p>
-                <Button
-                  onClick={() =>
-                    handleAddToCart(item.id, item.image, item.title, item.price)
-                  }
-                  className="cursor-pointer"
-                >
-                  Add To Cart
-                </Button>
+                <AddToCartBtn item={item} />
               </CardContent>
               <CardFooter>
                 <div>

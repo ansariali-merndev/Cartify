@@ -8,6 +8,8 @@ export interface ContextType {
   setProduct: React.Dispatch<React.SetStateAction<ProductType[]>>;
   cartState: CartType[];
   cartDispatch: React.Dispatch<CartAction>;
+  isLoaded: boolean;
+  setIsLoaded: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export interface ProductType {

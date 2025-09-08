@@ -11,9 +11,28 @@ import {
 } from "../ui/card";
 import { Button } from "../ui/button";
 import { TypographyTable } from "../block/CartTable";
+import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 export const Cart = () => {
   const { cartState, cartDispatch } = useUser();
+  const navigate = useNavigate();
+
+  const handlePlaceOrder = () => {
+    if (cartState.length === 0) {
+      Swal.fire({
+        icon: "warning",
+        title: "Your Cart is Empty",
+        text: "Please add some items before placing an order.",
+      });
+    } else {
+      Swal.fire({
+        icon: "success",
+        title: "Order Placed!",
+        text: "Your purchase was successful. Thank you for shopping with us!",
+      });
+    }
+  };
 
   return (
     <section className="mt-40 md:mt-30">
@@ -85,6 +104,17 @@ export const Cart = () => {
         <div>
           <Title title="Cart Totals" />
           <TypographyTable />
+          <div className="flex justify-between items-center">
+            <Button onClick={handlePlaceOrder} className="cursor-pointer">
+              Proceed to checkout
+            </Button>
+            <Button
+              onClick={() => navigate("/store")}
+              className="cursor-pointer"
+            >
+              Continue Shopping
+            </Button>
+          </div>
         </div>
       </div>
     </section>

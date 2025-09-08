@@ -1,12 +1,20 @@
 import { useEffect, useReducer, useState, type ReactNode } from "react";
 import { UserContext } from "./UserContext";
-import type { ProductType } from "@/lib/type";
+import type { CartType, ProductType } from "@/lib/type";
 import { cartReducer } from "./Reducer";
+
+const getInitialValue = () => {
+  const cartStr = localStorage.getItem("cart");
+  if (!cartStr) return [];
+  const data: CartType[] = JSON.parse(cartStr);
+  return data;
+};
 
 export const UserProvider = ({ children }: { children: ReactNode }) => {
   const [isDark, setIsDark] = useState(false);
   const [product, setProduct] = useState<ProductType[]>([]);
-  const [cartState, cartDispatch] = useReducer(cartReducer, []);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [cartState, cartDispatch] = useReducer(cartReducer, getInitialValue());
 
   useEffect(() => {
     async function fetchData() {
@@ -19,6 +27,7 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
     }
 
     fetchData();
+    setIsLoaded(true);
   }, []);
 
   const handleToggle = () => {
@@ -41,6 +50,7 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
     setProduct,
     cartState,
     cartDispatch,
+    isLoaded,
   };
 
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
