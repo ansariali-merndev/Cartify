@@ -14,8 +14,16 @@ import Swal from "sweetalert2";
 export const Store = () => {
   const { product, cartDispatch } = useUser();
 
-  const handleAddToCart = (id: number) => {
-    cartDispatch({ type: "ADD_TO_CART", payload: { id, qty: 1 } });
+  const handleAddToCart = (
+    id: number,
+    image: string,
+    title: string,
+    price: number
+  ) => {
+    cartDispatch({
+      type: "ADD_TO_CART",
+      payload: { id, qty: 1, image, title, price },
+    });
     Swal.fire({
       toast: true,
       position: "bottom-right",
@@ -48,7 +56,9 @@ export const Store = () => {
               <CardContent className="flex items-center justify-between">
                 <p>₹{item.price}</p>
                 <Button
-                  onClick={() => handleAddToCart(item.id)}
+                  onClick={() =>
+                    handleAddToCart(item.id, item.image, item.title, item.price)
+                  }
                   className="cursor-pointer"
                 >
                   Add To Cart

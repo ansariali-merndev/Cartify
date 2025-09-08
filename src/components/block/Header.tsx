@@ -7,10 +7,10 @@ import { useUser } from "@/Context/UserContext";
 
 export const Header = () => {
   const navigate = useNavigate();
-  const { isDark, handleToggle } = useUser();
+  const { isDark, handleToggle, cartState } = useUser();
 
   return (
-    <header className="fixed top-0 left-0 right-0 bg-neutral-700 h-[12vh] flex items-center justify-between px-4 md:px-12">
+    <header className="fixed top-0 left-0 right-0 bg-neutral-700 h-[12vh] flex items-center justify-between px-4 md:px-12 z-50">
       <NavLink
         to={"/"}
         className="text-zinc-200 text-2xl font-bold cursor-pointer tracking-wider"
@@ -38,9 +38,12 @@ export const Header = () => {
           variant={"destructive"}
           className="cursor-pointer"
         >
-          <span>
-            <IoCart />
-          </span>
+          <div className="flex justify-center items-end">
+            <span>
+              <IoCart />
+            </span>
+            <span className="text-[10px]">{cartState.length}</span>
+          </div>
         </Button>
       </div>
     </header>

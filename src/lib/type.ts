@@ -25,6 +25,9 @@ export interface ProductType {
 
 export interface CartType {
   id: number;
+  image: string;
+  title: string;
+  price: number;
   qty: number;
 }
 

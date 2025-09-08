@@ -7,7 +7,7 @@ export const AppLayout = () => {
   return (
     <React.Fragment>
       <Header />
-      <main className="container mx-auto px-4 my-26">
+      <main className="container mx-auto px-4 my-26 z-10">
         <Outlet />
       </main>
       <Footer />
