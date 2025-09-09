@@ -10,9 +10,18 @@ import {
 import { StarRating } from "../block/StarRating";
 import { AddToCartBtn } from "../block/AddToCartBtn";
 import { FilterFunctionality } from "../block/FilterFunctionality";
+import { SkeletonCard } from "../block/skeleton/SkeletonCard";
 
 export const Store = () => {
-  const { productState } = useUser();
+  const { productState, isLoaded } = useUser();
+
+  if (!isLoaded) {
+    return (
+      <div className="space-y-8">
+        <SkeletonCard />
+      </div>
+    );
+  }
 
   return (
     <section>
