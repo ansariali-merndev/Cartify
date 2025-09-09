@@ -9,12 +9,12 @@ import { Product } from "./components/layout/Product";
 
 const router = createBrowserRouter([
   {
-    path: "/Cartify/",
+    path: "/Cartify",
     element: <AppLayout />,
     errorElement: <Error />,
     children: [
       {
-        path: "/",
+        index: true,
         element: <Home />,
       },
       {
