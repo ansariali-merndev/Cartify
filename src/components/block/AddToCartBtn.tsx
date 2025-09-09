@@ -17,7 +17,6 @@ export const AddToCartBtn = ({ item }: { item: ProductType }) => {
       timerProgressBar: true,
       showConfirmButton: false,
     });
-    localStorage.setItem("cart", JSON.stringify(cartState));
   };
 
   const handleAddToCart = (
@@ -39,7 +38,6 @@ export const AddToCartBtn = ({ item }: { item: ProductType }) => {
       icon: "success",
       timer: 3000,
     });
-    localStorage.setItem("cart", JSON.stringify(cartState));
   };
 
   if (!isLoaded) {

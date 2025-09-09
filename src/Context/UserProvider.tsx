@@ -18,6 +18,10 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
   const [cartState, cartDispatch] = useReducer(cartReducer, getInitialValue());
 
   useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(cartState));
+  }, [cartState]);
+
+  useEffect(() => {
     async function fetchData() {
       try {
         const res = await fetch("https://fakestoreapi.com/products");
