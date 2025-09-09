@@ -7,36 +7,31 @@ import { UserProvider } from "./Context/UserProvider";
 import { Store } from "./components/layout/Store";
 import { Product } from "./components/layout/Product";
 
-const router = createBrowserRouter(
-  [
-    {
-      path: "/",
-      element: <AppLayout />,
-      errorElement: <Error />,
-      children: [
-        {
-          path: "/",
-          element: <Home />,
-        },
-        {
-          path: "/store",
-          element: <Store />,
-        },
-        {
-          path: "/store/:id",
-          element: <Product />,
-        },
-        {
-          path: "/cart",
-          element: <Cart />,
-        },
-      ],
-    },
-  ],
+const router = createBrowserRouter([
   {
-    basename: "/Cartify",
-  }
-);
+    path: "/Cartify/",
+    element: <AppLayout />,
+    errorElement: <Error />,
+    children: [
+      {
+        path: "/",
+        element: <Home />,
+      },
+      {
+        path: "/store",
+        element: <Store />,
+      },
+      {
+        path: "/store/:id",
+        element: <Product />,
+      },
+      {
+        path: "/cart",
+        element: <Cart />,
+      },
+    ],
+  },
+]);
 
 function App() {
   return (
